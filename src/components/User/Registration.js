@@ -9,18 +9,15 @@ import { useEffect, useState } from "react";
 import { AddAppointment } from "../../Services/Appointment";
 import { useNavigate } from "react-router-dom";
 import { GetSpeciApplicant } from "../../Services/Applicant";
-import { GetAllStates } from "../../Services/VaccCentre";
+import { GetAllRecords, GetAllStates } from "../../Services/VaccCentre";
 
 
 
 const Registration = () => {
-
-    // const [States, setStates] = useState({Data: useSelector(state => state.VaccCentreReducer.VaccCentres), isFetching: true});
-    const States = useSelector(state => state.VaccCentreReducer.VaccCentres);
-    const District = ["Puchong", "Ampang", "Bayan Lepas"];
+    const [States, setStates] = useState({Data: useSelector(state => state.VaccCentreReducer.VaccCentres), isFetching: true});
+    const [District, setDistrict] = useState({Data: []});
     const VaccCenter = ["Gombak Medical Centre", "KL Hospital", "Batu kawan Hospital"];
     const VaccChoice = ["Phizer", "Astrazeneca", "Sinovac", "Moderna"];
-    const [dataRegistered, setDataRegistered] = useState(true);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -40,12 +37,20 @@ const Registration = () => {
     })
 
     useEffect(() => {
-        GetAllStates(dispatch);
+        GetAllRecords(dispatch);
     }, [])
 
     useEffect(() => {
-        console.log(States);
-    }, [States])
+        if(States.Data.length !== 0)
+            {
+                setStates(prev => {
+                    return {
+                        ...prev,
+                        isFetching: false
+                    }
+                });
+            }
+    }, [States.Data])
 
     const handleChange = (event) => {
         const value = event.target.value;
@@ -57,9 +62,25 @@ const Registration = () => {
                 [name]: value
             }
         });
+
+        switch(name){
+            case 'State':
+               {
+                const dist = States.Data.filter((data) => {
+                   return data.state == value
+                })
+                setDistrict({
+                    Data: dist.map(x => (x.distrct))
+                })
+                break;
+               } 
+            default:
+                console.log("here")
+        }
     }
 
-    return (
+    return !States.isFetching
+    ?(
     <div className="container pt-5 pb-5 text-center">
         <Card className="bg-light">
             <h1 className="m-3 text-center">Vaccination Registration Form</h1>
@@ -114,7 +135,7 @@ const Registration = () => {
                     <span className="input-group-text" id="basic-addon3"><FontAwesomeIcon icon={faMapLocation}></FontAwesomeIcon></span>
                     <FormControl as='select' name="State" onChange={handleChange}>
                         <option selected>Select State</option>
-                        {States.map(state => (
+                        {States.Data.map(state => (
                             <option>{state.state}</option>
                         ))}
                     </FormControl>
@@ -124,7 +145,7 @@ const Registration = () => {
                     <span className="input-group-text" id="basic-addon3"><FontAwesomeIcon icon={faCity}></FontAwesomeIcon></span>
                     <FormControl as='select' name="District" onChange={handleChange}>
                         <option selected>Select District</option>
-                        {District.map(dist => (
+                        {District.Data.map(dist => (
                             <option>{dist}</option>
                         ))}
                     </FormControl>
@@ -163,6 +184,7 @@ const Registration = () => {
         </Card>
     </div>
 )
+: (<div>Loading</div>)
 
 }
 
