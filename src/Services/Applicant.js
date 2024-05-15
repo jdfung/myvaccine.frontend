@@ -7,42 +7,53 @@ const axiosInstance = axios.create({
 })
 
 export const GetApplicant = async (dispatch) => {
-    try {
-        //API call
-        const { data } = await axiosInstance.get();
-        dispatch(setApplicants(data));
-    } catch (error) {
-        console.log("Exception thrown: " + error);
-    }
+    //API call
+    await axiosInstance.get()
+    .then((result) => {
+        dispatch(setApplicants(result.data))
+        
+    }).catch((err) => {
+        console.log("Exception thrown: " + err);
+    })
 }
 
 export const GetSpeciApplicant = async (dispatch, name, ic) => {
-    try {
-        const { data } = await axiosInstance.get('IcName', {
+    await axiosInstance.get('IcName', {
             params: {
                 name: name,
                 ic: ic
             }
-        });
-        dispatch(setApplicant(data))
-        console.log(data)
+        })
+        .then((result) => {
+            dispatch(setApplicant(result.data))
+        }).catch((err) => {
+            dispatch(setApplicant(err.response.status));
+            console.log("Exception thrown: " + err);
+        })
+        
+}
 
-    } catch (error) {
-        dispatch(setApplicant(error.response.status));
-        console.log("Exception thrown: " + error);
-    }
+export const GetSpeciApplicantByID = async (dispatch, id) => {
+    await axiosInstance.get('/GetByID/' + id)
+    .then((result) => {
+        dispatch(setApplicant(result.data))
+    }).catch((err) => {
+        console.log("Exception thrown: " + err)
+    })
 }
 
 
 export const AddApplicants = async (dispatch, applicant) => {
-    try {
-        //API call
-        const { data } = await axiosInstance.post('', applicant);
-        dispatch(newApplicant(data));
 
-    } catch (error) {
-        console.log("Exception thrown: " + error);
-    }
+    await axiosInstance.post('', applicant)
+    .then((result) => {
+        dispatch(newApplicant(result.data));
+        return result.status
+        
+    }).catch((err) => {
+        console.log("Exception thrown: " + err);
+    })
+
 }
 
 export const UpdateApplicant = async (dispatch) => {

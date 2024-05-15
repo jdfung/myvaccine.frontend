@@ -3,30 +3,40 @@ import { useDispatch, useSelector } from "react-redux";
 import { GetSpeciApplicant } from "../../Services/Applicant";
 import { Button, Col, Row } from "react-bootstrap";
 import { GetSpeciAppointment } from "../../Services/Appointment";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default () => {
     const dispatch = useDispatch();
     const { state } = useLocation();
     const Appointments = useSelector(state => state.AppointmentReducer.Appointments);
+    const [currAppointments, setCurrAppointments] = useState({Data:Appointments, isFetching: true})
     const Applicants = useSelector(state => state.ApplicantsReducer.Applicants);
-    const [isLoading, setIsLoading] = useState(true);
+    const [currApplicants, setCurrApplicants] = useState({Data: Applicants, isFetching: true})
+    const [isSuccess, setIsSuccess] = useState({Applicant: false, Appointment: false});
     const navigate = useNavigate();
     
 
     useEffect(() => {
         GetSpeciApplicant(dispatch, state.Name, state.Ic)
         GetSpeciAppointment(dispatch, state.Name, state.Ic);
+        
     }, [])
 
     useEffect(() => {
-        if(Applicants.length !== 0 && Appointments.length !== 0 )
+        
+        setCurrAppointments({Data: Appointments, isFetching: false});
+        setCurrApplicants({Data: Applicants, isFetching: false});
+        
+        if(!currApplicants.isFetching && !currAppointments.isFetching && Applicants == 500)
             {
-                setIsLoading(false);
-            }
-        if(!isLoading && Applicants == 500)
-            {
-                setIsLoading(true);
+                setCurrApplicants((prev) => ({
+                    ...prev,
+                    isFetching: true
+                }))
+                setCurrAppointments((prev) => ({
+                    ...prev,
+                    isFetching: true
+                }))
                 navigate('/ErrorHandling', {
                     state: {
                         Error: 500
@@ -35,35 +45,43 @@ export default () => {
             }
     }, [Applicants, Appointments])
 
-    console.log(Applicants);
+    const handleEdit = () => {
+        navigate("/EditApplicant", {
+            state: {
+                applicant_id: currApplicants.Data[0].applicant_id
+            }
+        })
+        // console.log(currApplicants.Data[0].applicant_id)
+    }
+
+    const FormHeader = () => {
+        return (
+            <div className="p-3 text-center">
+                <h2>Applicant Vaccination Information</h2>
+            </div>
+        )
+    }
+    
+    const FormButtons = () => {
+        return (
+            <div className="p-3 d-grid">
+                <Button className="btn btn-primary" onClick={handleEdit}>Edit</Button>
+                <Link className="btn btn-danger" to="/SearchApplicant">Back</Link>
+            </div>
+        )
+    }
+    
 
     
-    return isLoading
+    return currApplicants.isFetching && currAppointments.isFetching
        ? (<div></div>)
-       : (Applicants.map((x,i) => 
+       : (currApplicants.Data.map((x,i) => 
         <div key={x.id} className="container">
             <FormHeader />
-            <ApplicantInfos applis={x} appoints={Appointments[0]}/>
+            <ApplicantInfos applis={x} appoints={currAppointments.Data[i]}/>
             <FormButtons />
         </div>))
 
-}
-
-const FormHeader = () => {
-    return (
-        <div className="p-3 text-center">
-            <h2>Applicant Vaccination Information</h2>
-        </div>
-    )
-}
-
-const FormButtons = () => {
-    return (
-        <div className="p-3 d-grid">
-            <Button className="btn btn-primary">Edit</Button>
-            <Button className="btn btn-danger">Back</Button>
-        </div>
-    )
 }
 
 const ApplicantInfos = ({applis, appoints}) => {

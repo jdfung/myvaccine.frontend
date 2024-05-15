@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Registration from './components/User/Registration';
 import SearchApplicant from './components/User/SearchApplicant';
 import ErrorHandling from './components/User/ErrorHandling';
+import EditApplicant from './components/User/EditApplicant';
 
 
 const App = () => (
@@ -55,6 +56,7 @@ const App = () => (
           <Route path="/Registration" element={<Registration />}></Route>
           <Route path="/SearchApplicant" element={<SearchApplicant />}></Route>
           <Route path="/ApplicantInfo" element={<ApplicantInfo />}></Route>
+          <Route path="/EditApplicant" element={<EditApplicant />}></Route>
           <Route path="/ErrorHandling" element={<ErrorHandling />}></Route>
         </Routes>
       </div>

@@ -7,7 +7,7 @@ export const VaccCentreReducer = createSlice({
     },
     reducers: {
         setVaccCentres: (state, action) => {
-            return { ...state, VaccCentres: [...action.payload] }
+            return { ...state, VaccCentres: [...action.payload], }
         },
         setStateAndDistricts: (state, action) => {
             return { ...state, VaccCentres: [...action.payload] }

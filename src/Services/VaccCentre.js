@@ -7,12 +7,12 @@ const axiosInstance = axios.create({
 })
 
 export const GetAllRecords = async (dispatch) => {
-    try {
-        const { data } = await axiosInstance.get();
-        dispatch(setVaccCentres(data));
-    } catch (error) {
-        console.log("Exception Thrown: " + error);
-    }
+    axiosInstance.get()
+    .then((result) => {
+        dispatch(setVaccCentres(result.data));
+    }).catch((err) => {
+        console.log("Exception Thrown: " + err);
+    })
 
 }
 
