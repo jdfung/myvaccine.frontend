@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { setApplicant, setApplicants, newApplicant } from "../app/ApplicantsReducer";
+import { setApplicant, setApplicants, newApplicant, updateApplicant } from "../app/ApplicantsReducer";
 import axios from 'axios';
 
 const axiosInstance = axios.create({
@@ -42,6 +42,16 @@ export const GetSpeciApplicantByID = async (dispatch, id) => {
     })
 }
 
+export const GetSpeciApplicantByIc = async (dispatch, ic) => {
+    const response = await axiosInstance.get('/GetByIc/' + ic)
+    .then((result) => {
+        return result.status
+    }).catch((err) => {
+        return err.response.status
+    })
+    return response
+}
+
 
 export const AddApplicants = async (dispatch, applicant) => {
 
@@ -56,12 +66,13 @@ export const AddApplicants = async (dispatch, applicant) => {
 
 }
 
-export const UpdateApplicant = async (dispatch) => {
-    try {
-        //API call
-
-
-    } catch (error) {
-        console.log("Exception thrown: " + error);
-    }
+export const UpdateApplicant = async (dispatch, applicant) => {
+    //API call
+    await axiosInstance.put('', applicant)
+    .then((result) => {
+        dispatch(updateApplicant(result.data));
+        return result.status
+    }).catch((err) => {
+        console.log("Exception thrown: " + err);
+    })
 }

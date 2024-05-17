@@ -1,9 +1,10 @@
 import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GetSpeciApplicant } from "../../Services/Applicant";
-import { Button, Col, Row } from "react-bootstrap";
+import { Button, Card, Col, Row } from "react-bootstrap";
 import { GetSpeciAppointment } from "../../Services/Appointment";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Form } from "react-bootstrap";
 
 export default () => {
     const dispatch = useDispatch();
@@ -11,15 +12,14 @@ export default () => {
     const Appointments = useSelector(state => state.AppointmentReducer.Appointments);
     const [currAppointments, setCurrAppointments] = useState({Data:Appointments, isFetching: true})
     const Applicants = useSelector(state => state.ApplicantsReducer.Applicants);
-    const [currApplicants, setCurrApplicants] = useState({Data: Applicants, isFetching: true})
+    var [currApplicants, setCurrApplicants] = useState({Data: Applicants, isFetching: true})
     const [isSuccess, setIsSuccess] = useState({Applicant: false, Appointment: false});
     const navigate = useNavigate();
     
 
     useEffect(() => {
         GetSpeciApplicant(dispatch, state.Name, state.Ic)
-        GetSpeciAppointment(dispatch, state.Name, state.Ic);
-        
+        GetSpeciAppointment(dispatch, state.Name, state.Ic);    
     }, [])
 
     useEffect(() => {
@@ -48,38 +48,40 @@ export default () => {
     const handleEdit = () => {
         navigate("/EditApplicant", {
             state: {
-                applicant_id: currApplicants.Data[0].applicant_id
+                applicant_id: currApplicants.Data[0].applicant_id,
+                appointment_id: currAppointments.Data[0].appointment_id
             }
         })
-        // console.log(currApplicants.Data[0].applicant_id)
     }
 
     const FormHeader = () => {
         return (
             <div className="p-3 text-center">
-                <h2>Applicant Vaccination Information</h2>
+                <h1>Applicant Vaccination Information</h1>
             </div>
         )
     }
     
     const FormButtons = () => {
         return (
-            <div className="p-3 d-grid">
-                <Button className="btn btn-primary" onClick={handleEdit}>Edit</Button>
-                <Link className="btn btn-danger" to="/SearchApplicant">Back</Link>
+            <div className="d-flex justify-content-center align-items-center flex-column pb-3">
+                <Button className="btn btn-primary p-2 w-25" onClick={handleEdit}>Edit</Button>
+                <Link className="btn btn-danger p-2 w-25" to="/SearchApplicant">Back</Link>
             </div>
         )
     }
     
 
-    
     return currApplicants.isFetching && currAppointments.isFetching
        ? (<div></div>)
        : (currApplicants.Data.map((x,i) => 
-        <div key={x.id} className="container">
-            <FormHeader />
-            <ApplicantInfos applis={x} appoints={currAppointments.Data[i]}/>
-            <FormButtons />
+        <div key={x.id} className="container pt-5 pb-5">
+            <Card className="bg-light d-flex justify-content-center">
+                <FormHeader />
+                <ApplicantInfos applis={x} appoints={currAppointments.Data[i]}/>
+                <AppointmentInfos applis={currApplicants.Data[0]} appoints={currAppointments.Data[0]}/>
+                <FormButtons />
+            </Card>
         </div>))
 
 }
@@ -90,13 +92,56 @@ const ApplicantInfos = ({applis, appoints}) => {
     const data = [applis.ic, applis.name, applis.gender, applis.phoneNo, applis.email, applis.address, appoints.vaccCenter, appoints.vaccChoice];
 
     return (
-        <div className="px-5">
+        <div className="px-5 justify-content-center align-items-center">
             {labels.map((x, i) => (
                 <Row className="pb-3">
-                    <Col>{x}:</Col>
-                    <Col>{data[i]}</Col>
+                    <Col className="text-center">{x}:</Col>
+                    <Col className="text-center">{data[i]}</Col>
                 </Row>
             ))}
+        </div>
+    )
+}
+
+const AppointmentInfos = ({applis, appoints}) => {
+    const lables = ["Dose", "Appointment Date", "Vaccination Status", "Cancellation"];
+
+    return(
+        <div className="pb-5">
+            <Card className="bg-secondary text-light text-center">
+                <Row className="m-2">
+                    {lables.map(label => (
+                        <Col>
+                            {label}
+                        </Col>
+                    ))}
+                </Row>
+                <Row className="m-2 justify-content-center align-items-center">
+                    <Col>1</Col>
+                    <Col>{appoints.firstDoseDate}</Col>
+                    <Col>
+                        <div>
+                        {applis.firstDose ? <Form.Check checked/> : <Form.Check disabled="disabled"/>}
+                        </div>
+                    </Col>
+                    <Col>
+                        <button className="btn btn-outline-danger">Cancel</button>
+                    </Col>
+                </Row>
+
+                <Row className="m-2 justify-content-center align-items-center">
+                    <Col>2</Col>
+                    <Col>{appoints.secondDoseDate}</Col>
+                    <Col>
+                        <div>
+                        {applis.secondDose ? <Form.Check checked/> : <Form.Check disabled="disabled"/>}
+                        </div>
+                    </Col>
+                    <Col>
+                        <button className="btn btn-outline-danger">Cancel</button>
+                    </Col>
+                </Row>
+            </Card>
         </div>
     )
 }

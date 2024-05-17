@@ -1,4 +1,4 @@
-import { setAppointments, setAppointment, newAppointment } from "../app/AppointmentReducer";
+import { setAppointments, setAppointment, newAppointment, updateAppointmentName } from "../app/AppointmentReducer";
 import axios from 'axios'
 
 const axiosInstance = axios.create({
@@ -39,4 +39,19 @@ export const AddAppointment = async (dispatch, appointment) => {
     } catch (error) {
         console.log("Exception thrown: " + error);
     }
+}
+
+export const UpdateAppointmentName = async (dispatch, id, name) => {
+    await axiosInstance.put('UpdateNameIC', null, {
+        params: {
+            id: id,
+            name: name
+        }
+    })
+    .then((result) => {
+        dispatch(updateAppointmentName(result.data));
+        return result.status;
+    }).catch((err) => {
+        console.log("Exception thrown: " + err);
+    })
 }
