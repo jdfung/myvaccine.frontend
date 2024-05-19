@@ -38,7 +38,7 @@ export default () => {
     }
 
 
-    return (<div className="container pt-5 pb-5 text-center">
+    return (<div className="container pt-5 pb-5 text-center ">
         <Card className="bg-light">
             <h1 className="m-3 text-center">MyVaccine Reservation System</h1>
             <Form className="m-3" method="get" onSubmit={handleSubmit}>

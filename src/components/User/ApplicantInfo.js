@@ -2,7 +2,7 @@ import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { GetSpeciApplicant } from "../../Services/Applicant";
 import { Button, Card, Col, Row } from "react-bootstrap";
-import { GetSpeciAppointment } from "../../Services/Appointment";
+import { DeleteAppointmentDate, GetSpeciAppointment } from "../../Services/Appointment";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Form } from "react-bootstrap";
 
@@ -105,6 +105,13 @@ const ApplicantInfos = ({applis, appoints}) => {
 
 const AppointmentInfos = ({applis, appoints}) => {
     const lables = ["Dose", "Appointment Date", "Vaccination Status", "Cancellation"];
+    const handleSubmit = async (event, doseNumber) => {
+        event.preventDefault();
+        const status = await DeleteAppointmentDate(appoints.appointment_id, doseNumber);
+  
+        
+        console.log(status)
+    }
 
     return(
         <div className="pb-5">
@@ -116,31 +123,36 @@ const AppointmentInfos = ({applis, appoints}) => {
                         </Col>
                     ))}
                 </Row>
-                <Row className="m-2 justify-content-center align-items-center">
-                    <Col>1</Col>
-                    <Col>{appoints.firstDoseDate}</Col>
-                    <Col>
-                        <div>
-                        {applis.firstDose ? <Form.Check checked/> : <Form.Check disabled="disabled"/>}
-                        </div>
-                    </Col>
-                    <Col>
-                        <button className="btn btn-outline-danger">Cancel</button>
-                    </Col>
-                </Row>
 
-                <Row className="m-2 justify-content-center align-items-center">
-                    <Col>2</Col>
-                    <Col>{appoints.secondDoseDate}</Col>
-                    <Col>
-                        <div>
-                        {applis.secondDose ? <Form.Check checked/> : <Form.Check disabled="disabled"/>}
-                        </div>
-                    </Col>
-                    <Col>
-                        <button className="btn btn-outline-danger">Cancel</button>
-                    </Col>
-                </Row>
+                <form onSubmit={(event) => handleSubmit(event, 1)}>
+                    <Row className="m-2 justify-content-center align-items-center">
+                        <Col>1</Col>
+                        <Col>{appoints.firstDoseDate == null ? " - " : appoints.firstDoseDate}</Col>
+                        <Col>
+                            <div>
+                            {applis.firstDose ? <Form.Check checked/> : <Form.Check disabled="disabled"/>}
+                            </div>
+                        </Col>
+                        <Col>
+                            <button className="btn btn-outline-danger">Cancel</button>
+                        </Col>
+                    </Row>
+                </form>
+
+                <form onSubmit={event => handleSubmit(event, 2)}>
+                    <Row className="m-2 justify-content-center align-items-center">
+                        <Col>2</Col>
+                        <Col>{appoints.secondDoseDate == null ? " - " : appoints.secondDoseDate}</Col>
+                        <Col>
+                            <div>
+                            {applis.secondDose ? <Form.Check checked/> : <Form.Check disabled="disabled"/>}
+                            </div>
+                        </Col>
+                        <Col>
+                            <button className="btn btn-outline-danger" type="submit">Cancel</button>
+                        </Col>
+                    </Row>
+                </form>
             </Card>
         </div>
     )

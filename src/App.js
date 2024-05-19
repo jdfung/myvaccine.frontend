@@ -51,7 +51,7 @@ const App = () => (
       </section>
       </header>
       
-      <div className='mt-5'>
+      <div className='mt-5 d-flex justify-content-center align-items-center' style={{height:"100vh"}}>
         <Routes>
           <Route path="/Home" element={<Home />}></Route>
           <Route path='/registeredVerification' element={<RegisteredVerification />}/>

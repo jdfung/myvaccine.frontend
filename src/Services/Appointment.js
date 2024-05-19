@@ -48,10 +48,27 @@ export const UpdateAppointmentName = async (dispatch, id, name) => {
             name: name
         }
     })
-    .then((result) => {
-        dispatch(updateAppointmentName(result.data));
-        return result.status;
-    }).catch((err) => {
-        console.log("Exception thrown: " + err);
+        .then((result) => {
+            dispatch(updateAppointmentName(result.data));
+            return result.status;
+        }).catch((err) => {
+            console.log("Exception thrown: " + err);
+        })
+}
+
+export const DeleteAppointmentDate = async (id, doseNumber) => {
+    const response = await axiosInstance.put('DeleteDate', null, {
+        params: {
+            id: id,
+            dose: doseNumber
+        }
     })
+    .then((result) => {
+        return result
+    }).catch((err) => {
+        console.log(err.response)
+        return err.response.status;
+    })
+
+    return response;
 }

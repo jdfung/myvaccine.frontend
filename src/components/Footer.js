@@ -2,8 +2,7 @@ import { Col, Row } from "react-bootstrap";
 
 const Footer = () => (
 
-    <div>
-        <footer style={{backgroundColor: '#27b2b3'}} className="page-footer">
+        <footer style={{backgroundColor: '#27b2b3'}} className="page-footer mt-auto">
             <div className="container p-4">
                 <Row>
                     <Col>
@@ -40,7 +39,6 @@ const Footer = () => (
                 
                 </div>
         </footer>
-    </div>
 
 )
 

@@ -31,7 +31,11 @@ export default () => {
         }
         else {
             setExistUser(false);
-            navigate('/Registration');
+            navigate('/Registration', {
+                state: {
+                    ic: userInput
+                }
+            });
         }
     }
 
@@ -52,11 +56,11 @@ export default () => {
     return !existUser 
     ?(
         <div className="container pt-5 pb-5 text-center">
-            <Card className="bg-light d-flex justify-content-center text-center">
+            <Card className="bg-light d-flex justify-content-center align-items-center text-center">
                 <h1 className="m-3 text-center">MyVaccine Registration</h1>
 
                 
-                <Card className="border border-dark rounded mb-5 bg-white">
+                <Card className="border border-dark rounded mb-5 bg-white w-50">
                     <div >
                         <h3 className="m-3 text-center">Enter Your IC Number</h3>
                     </div>
