@@ -44,12 +44,12 @@ export default () => {
             <Form className="m-3" method="get" onSubmit={handleSubmit}>
                 <div className="input-group pb-3">
                     <span className="input-group-text" id="basic-addon1"><FontAwesomeIcon icon={faUser}></FontAwesomeIcon></span>
-                    <Form.Control type="text" className="form-control" placeholder="Name" aria-label="Username" name="Name" aria-describedby="basic-addon1" onChange={handleChange} required/>
+                    <Form.Control type="text" className="form-control" placeholder="Name" aria-label="Username" name="Name" aria-describedby="basic-addon1" onChange={(e) => handleChange(e)} required/>
                 </div>
 
                 <div className="input-group pb-3">
                     <span className="input-group-text" id="basic-addon2"><FontAwesomeIcon icon={faIdCard}></FontAwesomeIcon></span>
-                    <Form.Control type="text" className="form-control" placeholder="IC" aria-label="IC" name="Ic" aria-describedby="basic-addon2" onChange={handleChange} required/>
+                    <Form.Control type="text" className="form-control" placeholder="IC" aria-label="IC" name="Ic" aria-describedby="basic-addon2" onChange={(e) => handleChange(e)} required/>
                 </div>
 
                 <div className="form-group text-center pb-3">

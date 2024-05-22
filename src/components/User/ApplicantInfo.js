@@ -18,8 +18,8 @@ export default () => {
     
 
     useEffect(() => {
-        GetSpeciApplicant(dispatch, state.Name, state.Ic)
-        GetSpeciAppointment(dispatch, state.Name, state.Ic);    
+        setTimeout(() => GetSpeciApplicant(dispatch, state.Name, state.Ic), 300)
+        setTimeout(() => GetSpeciAppointment(dispatch, state.Name, state.Ic), 300);    
     }, [])
 
     useEffect(() => {
@@ -72,7 +72,7 @@ export default () => {
     }
     
 
-    return currApplicants.isFetching && currAppointments.isFetching
+    return currApplicants.isFetching || currAppointments.isFetching
        ? (<div></div>)
        : (currApplicants.Data.map((x,i) => 
         <div key={x.id} className="container pt-5 pb-5">

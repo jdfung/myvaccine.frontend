@@ -25,7 +25,7 @@ const Registration = () => {
     const navigate = useNavigate();
     const [formInput, setFormInput] = useState({
         Name: "",
-        IC: "",
+        IC: state.ic,
         Gender: "",
         PhoneNo: "",
         Email: "",
@@ -44,6 +44,10 @@ const Registration = () => {
     useEffect(() => {
         setCurrStates({ Data: States }); //set received data into state
         setAllStates({ Data: [...new Set(currStates.Data.map(state => (state.state)))] }) //remove duplicates and insert into state
+        // setFormInput((prev) => ({
+        //     ...prev,
+        //     IC: state.ic
+        // }))
     }, [States])
 
 
@@ -63,6 +67,8 @@ const Registration = () => {
                 [name]: value
             }
         });
+
+        console.log(state)
 
         //conditional select dropdowns
         switch (name) {
@@ -97,7 +103,7 @@ const Registration = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         await AddApplicants(dispatch, { name: formInput.Name, ic: formInput.IC, gender: formInput.Gender, phoneNo: formInput.PhoneNo, email: formInput.Email, address: formInput.Address, firstDose: false, secondDose: false })
-        await AddAppointment(dispatch, { ic: formInput.IC, name: formInput.Name, vaccCenter: formInput.Centre, vaccChoice: formInput.VaccChoice, firstDoseDate: formInput.firstDoseDate, secondDoseDate: formInput.firstDoseDate })
+        await AddAppointment(dispatch, { name: formInput.Name, ic: formInput.IC, vaccCenter: formInput.Centre, vaccChoice: formInput.VaccChoice, firstDoseDate: formInput.firstDoseDate, secondDoseDate: null })
 
         navigate('/ApplicantInfo', {
             state: {

@@ -26,7 +26,7 @@ const App = () => (
           </button>
 
           <div className='collapse navbar-collapse' id='navbarSupportedContent'>
-            <ul className='navbar-nav me-auto'>
+            <ul className='navbar-nav mr-auto'>
               <li className='nav-item'>
                 <Link to="/Home" className='nav-link'>Home</Link>
               </li>
@@ -37,9 +37,9 @@ const App = () => (
                 <Link to="/SearchApplicant" className='nav-link'>View My Vaccine</Link>
               </li>
             </ul>
+            
           </div>
         </div>
-
       </nav>
 
       <section>
