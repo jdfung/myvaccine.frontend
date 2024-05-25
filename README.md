@@ -1,6 +1,6 @@
 # Vaccination Appointment Management System - End User Front-End
 
-Welcome to the Vaccination Appointment Management System's end-user front-end repository. This project aims to provide a seamless experience for users to book vaccination appointments easily and efficiently. The system consists of an end-user site and an admin dashboard. This repository is dedicated to the end-user front-end implementation.
+Welcome to the MyVaccine Appointment Management System's user front-end repository. This project aims to provide a seamless experience for users to Register, book, and manage their vaccination appointments easily and efficiently. The system consists of an end-user site and an admin dashboard. This repository is dedicated to the end-user front-end implementation.
 
 ## Project Structure
 
@@ -18,8 +18,8 @@ The React project was initialized with npm using the redux template. Additionall
 
 ## Repository Links
 
-- **Backend Repository**: [Link to Backend Repo](xxxxxxxxxxx.com)
-- **Admin Dashboard Front-End Repository**: [Link to Admin Dashboard Front-End Repo](xxxxxxxxxxxxxx.com)
+- **Backend Repository**: [Link to Backend Repo](https://github.com/jdfung/MyVaccine.WebAPI)
+- **Admin Dashboard Front-End Repository**: [Link to Admin Dashboard Front-End Repo](https://github.com/jdfung/myvaccine.admin.frontend)
 
 ## Getting Started
 
@@ -35,9 +35,10 @@ To get started with the project, follow these steps:
     ```sh
     Copy code
     npm install
-    Run the development server:
+ 3. **Run the development server**:
 
-  ````sh
-  Copy code
-  npm start
-  The application will be available at http://localhost:3000.
+     ````sh
+     Copy code
+     npm start
+     
+ 4.  The application will be available at http://localhost:3000.
