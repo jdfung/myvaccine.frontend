@@ -1,46 +1,44 @@
-# Getting Started with Create React App and Redux
+# Vaccination Appointment Management System - End User Front-End
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+Welcome to the MyVaccine Appointment Management System's user front-end repository. This project aims to provide a seamless experience for users to Register, book, and manage their vaccination appointments easily and efficiently. The system consists of an end-user site and an admin dashboard. This repository is dedicated to the end-user front-end implementation.
 
-## Available Scripts
+## Project Structure
 
-In the project directory, you can run:
+This front-end project is built with the following technologies:
 
-### `npm start`
+- **React**: A JavaScript library for building user interfaces.
+- **Redux**: A predictable state container for JavaScript apps.
+- **JavaScript**: The programming language used for the project's logic.
+- **HTML/CSS**: Markup and styling for the project.
+- **Bootstrap 5**: A CSS framework for developing responsive and mobile-first websites.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Project Initialization
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The React project was initialized with npm using the redux template. Additionally, the react-bootstrap package was installed to utilize Bootstrap 5 components.
 
-### `npm test`
+## Repository Links
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Backend Repository**: [Link to Backend Repo](https://github.com/jdfung/MyVaccine.WebAPI)
+- **Admin Dashboard Front-End Repository**: [Link to Admin Dashboard Front-End Repo](https://github.com/jdfung/myvaccine.admin.frontend)
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To get started with the project, follow these steps:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Clone the repository**:
+   ```sh
+   git clone https://github.com/yourusername/vaccination-appointment-enduser.git
+   cd vaccination-appointment-enduser
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Install dependencies**:
 
-### `npm run eject`
+    ```sh
+    Copy code
+    npm install
+ 3. **Run the development server**:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+     ````sh
+     Copy code
+     npm start
+     
+ 4.  The application will be available at http://localhost:3000.
