@@ -2,7 +2,7 @@ import { Col, Row } from "react-bootstrap";
 
 const Footer = () => (
 
-        <footer style={{backgroundColor: '#27b2b3'}} className="page-footer mt-auto">
+        <footer style={{backgroundColor: '#4865CC'}} className="footer">
             <div className="container p-4">
                 <Row>
                     <Col>

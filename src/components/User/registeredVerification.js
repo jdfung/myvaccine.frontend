@@ -55,7 +55,7 @@ export default () => {
 
     return !existUser 
     ?(
-        <div className="container pt-5 pb-5 text-center">
+        <div className="container pb-5 text-center h-100 d-flex flex-column justify-content-center">
             <Card className="bg-light d-flex justify-content-center align-items-center text-center">
                 <h1 className="m-3 text-center">MyVaccine Registration</h1>
 
@@ -70,9 +70,9 @@ export default () => {
                                 <span className="input-group-text" id="basic-addon2"><FontAwesomeIcon icon={faIdCard}></FontAwesomeIcon></span>
                                 <FormControl type="text" className="form-control" maxLength={12} name="IC" placeholder="IC" aria-label="IC" aria-describedby="basic-addon2" onChange={handleChange} required></FormControl>
                             </div>
-                            <div className="d-flex justify-content-center align-items-center flex-column">
-                                <button className="btn btn-primary p-2 w-25" type="submit">Next</button>
-                                <Link className="btn btn-danger p-2 w-25" to="/Home">Cancel</Link>
+                            <div className="d-flex justify-content-center align-items-center flex-md-column flex-row">
+                                <button className="btn btn-primary btn-responsive p-2" type="submit">Next</button>
+                                <Link className="btn btn-danger btn-responsive p-2" to="/">Cancel</Link>
                             </div>
                         </form>
                     </div>

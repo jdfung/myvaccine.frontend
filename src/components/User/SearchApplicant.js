@@ -38,7 +38,7 @@ export default () => {
     }
 
 
-    return (<div className="container pt-5 pb-5 text-center ">
+    return (<div className="container pt-5 pb-5 text-center h-100 d-flex flex-column justify-content-center">
         <Card className="bg-light">
             <h1 className="m-3 text-center">MyVaccine Reservation System</h1>
             <Form className="m-3" method="get" onSubmit={handleSubmit}>
@@ -54,7 +54,7 @@ export default () => {
 
                 <div className="form-group text-center pb-3">
                     <button type="submit" className="btn btn-primary btn-block mx-3" >Search</button>
-                    <Link to="/Home" className='btn btn-danger btn-block mx-3'>Cancel</Link>
+                    <Link to="/" className='btn btn-danger btn-block mx-3'>Cancel</Link>
                 </div>
             </Form>
         </Card>
