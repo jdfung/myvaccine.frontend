@@ -18,7 +18,7 @@ export const GetApplicant = async (dispatch) => {
 }
 
 export const GetSpeciApplicant = async (dispatch, name, ic) => {
-    await axiosInstance.get('IcName', {
+    const status = await axiosInstance.get('IcName', {
             params: {
                 name: name,
                 ic: ic
@@ -26,11 +26,13 @@ export const GetSpeciApplicant = async (dispatch, name, ic) => {
         })
         .then((result) => {
             dispatch(setApplicant(result.data))
+            return result.status
         }).catch((err) => {
             dispatch(setApplicant(err.response.status));
             console.log("Exception thrown: " + err);
+            return err.response.status
         })
-        
+    return status
 }
 
 export const GetSpeciApplicantByID = async (dispatch, id) => {

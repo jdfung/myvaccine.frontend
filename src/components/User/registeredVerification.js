@@ -42,7 +42,7 @@ export default () => {
     const HandleExistingUser = () => {
 
         return(
-            <div className="container pt-5 pb-5 text-center">
+            <div className="container pt-5 pb-5 text-center h-100 d-flex flex-column justify-content-center">
                 <Card className="p-3 bg-light d-flex justify-content-center align-items-center text-center">
                     <h3 className="m-3 text-center">The IC number you have entered has been registered</h3>
                     <p>Please redirect to the "View My Vaccine" page to check for the applicants information</p>
@@ -55,12 +55,12 @@ export default () => {
 
     return !existUser 
     ?(
-        <div className="container pb-5 text-center h-100 d-flex flex-column justify-content-center">
-            <Card className="bg-light d-flex justify-content-center align-items-center text-center">
-                <h1 className="m-3 text-center">MyVaccine Registration</h1>
+        <div className="container pt-5 pb-5 text-center h-100 d-flex flex-column justify-content-center">
+            {/* <Card className="bg-light d-flex justify-content-center align-items-center text-center">*/}
+                <h1 className="m-3 text-center">MyVaccine Registration</h1> 
 
                 
-                <Card className="border border-dark rounded mb-5 bg-white w-50">
+                <Card className="bg-light">
                     <div >
                         <h3 className="m-3 text-center">Enter Your IC Number</h3>
                     </div>
@@ -70,14 +70,14 @@ export default () => {
                                 <span className="input-group-text" id="basic-addon2"><FontAwesomeIcon icon={faIdCard}></FontAwesomeIcon></span>
                                 <FormControl type="text" className="form-control" maxLength={12} name="IC" placeholder="IC" aria-label="IC" aria-describedby="basic-addon2" onChange={handleChange} required></FormControl>
                             </div>
-                            <div className="d-flex justify-content-center align-items-center flex-md-column flex-row">
-                                <button className="btn btn-primary btn-responsive p-2" type="submit">Next</button>
-                                <Link className="btn btn-danger btn-responsive p-2" to="/">Cancel</Link>
+                            <div className="text-center pb-3">
+                                <button className="btn btn-primary btn-responsive btn-block mx-3 p-2" type="submit">Next</button>
+                                <Link className="btn btn-danger btn-responsive btn-block mx-3 p-2" to="/">Cancel</Link>
                             </div>
                         </form>
                     </div>
                 </Card>
-            </Card>
+            {/* </Card> */}
         </div>
     )
     : <HandleExistingUser />

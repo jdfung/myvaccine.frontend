@@ -18,38 +18,38 @@ export default () => {
     
 
     useEffect(() => {
-        setTimeout(() => GetSpeciApplicant(dispatch, state.Name, state.Ic), 300)
-        setTimeout(() => GetSpeciAppointment(dispatch, state.Name, state.Ic), 300);    
+        GetSpeciApplicant(dispatch, state.Name, state.Ic)
+        GetSpeciAppointment(dispatch, state.Name, state.Ic)    
     }, [])
 
     useEffect(() => {
         
-        setCurrAppointments({Data: Appointments, isFetching: false});
-        setCurrApplicants({Data: Applicants, isFetching: false});
+        setTimeout(() => setCurrAppointments({Data: Appointments, isFetching: false}), 1000);
+        setTimeout(() => setCurrApplicants({Data: Applicants, isFetching: false}), 1000);
         
-        if(!currApplicants.isFetching && !currAppointments.isFetching && Applicants == 500)
-            {
-                setCurrApplicants((prev) => ({
-                    ...prev,
-                    isFetching: true
-                }))
-                setCurrAppointments((prev) => ({
-                    ...prev,
-                    isFetching: true
-                }))
-                navigate('/ErrorHandling', {
-                    state: {
-                        Error: 500
-                    }
-                })
-            }
+        // if(!currApplicants.isFetching && !currAppointments.isFetching && Applicants == 500)
+        //     {
+        //         setCurrApplicants((prev) => ({
+        //             ...prev,
+        //             isFetching: true
+        //         }))
+        //         setCurrAppointments((prev) => ({
+        //             ...prev,
+        //             isFetching: true
+        //         }))
+        //         navigate('/ErrorHandling', {
+        //             state: {
+        //                 Error: 500
+        //             }
+        //         })
+        //     }
     }, [Applicants, Appointments])
 
     const handleEdit = () => {
         navigate("/EditApplicant", {
             state: {
                 applicant_id: currApplicants.Data[0].applicant_id,
-                appointment_id: currAppointments.Data[0].appointment_id
+                appointment_id: currAppointments.Data.appointment_id
             }
         })
     }
@@ -73,13 +73,17 @@ export default () => {
     
 
     return currApplicants.isFetching || currAppointments.isFetching
-       ? (<div></div>)
+       ? (<div class="d-flex flex-column align-items-center h-100 mt-5">
+            <div class="spinner-border" role="status">
+                <span class="sr-only"></span>
+            </div>
+        </div>)
        : (currApplicants.Data.map((x,i) => 
         <div key={x.id} className="container pt-5 pb-5">
             <Card className="bg-light d-flex justify-content-center">
                 <FormHeader />
-                <ApplicantInfos applis={x} appoints={currAppointments.Data[i]}/>
-                <AppointmentInfos applis={currApplicants.Data[0]} appoints={currAppointments.Data[0]}/>
+                <ApplicantInfos applis={x} appoints={currAppointments.Data}/>
+                <AppointmentInfos applis={currApplicants.Data[0]} appoints={currAppointments.Data}/>
                 <FormButtons />
             </Card>
         </div>))

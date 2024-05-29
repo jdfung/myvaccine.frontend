@@ -4,7 +4,7 @@ export default () => {
 
     return (
 
-        <nav class="navbar navbar-expand-lg navbar-dark mask-custom shadow-0" id="mainNav" style={{backgroundColor: '#4865CC'}}>
+        <nav class="navbar navbar-expand-lg navbar-dark mask-custom shadow-0 sticky-top" id="mainNav" style={{backgroundColor: '#4865CC'}}>
             <div class="container">
                 <a class="navbar-brand" href="#page-top"><span className="primary-color">MyVaccine</span></a>
                 <button class="navbar-toggler text-uppercase font-weight-bold rounded" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">

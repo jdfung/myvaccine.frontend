@@ -8,10 +8,10 @@ export default () => {
     switch(state.Error) {
         case 500:
             return(
-            <div className="container text-center p-3">
+            <div className="container text-center p-3 h-100 d-flex flex-column justify-content-center">
                 <h1>This Applicant does not exists</h1>
                 <p>The Name or the IC number may be incorrect</p>
-                <Link className="btn btn-danger" to="/SearchApplicant">Back</Link>
+                <Link className="btn btn-danger btn-responsive align-self-center" to="/SearchApplicant">Back</Link>
             </div>
             
         )

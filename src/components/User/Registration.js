@@ -38,7 +38,7 @@ const Registration = () => {
     })
 
     useEffect(() => {
-        GetAllRecords(dispatch); //call Api and get data
+        setTimeout(() => GetAllRecords(dispatch), 600); //call Api and get data
     }, [])
 
     useEffect(() => {
@@ -116,7 +116,11 @@ const Registration = () => {
 
 
     return isFetching
-        ? (<div> Loadiing </div>)
+        ? (<div class="d-flex justify-content-center">
+                <div class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>)
         : (<div className="container pt-5 pb-5 text-center">
 
             <Card className="bg-light">
@@ -209,7 +213,7 @@ const Registration = () => {
 
                     <div className="form-group text-center pb-3">
                         <button type="submit" className="btn btn-primary btn-block mx-3" >Submit</button>
-                        <Link to="/Home" className='btn btn-danger btn-block mx-3'>Cancel</Link>
+                        <Link to="/" className='btn btn-danger btn-block mx-3'>Cancel</Link>
                     </div>
                 </form>
             </Card>

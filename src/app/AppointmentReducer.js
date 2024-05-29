@@ -10,7 +10,7 @@ export const AppointmentReducer = createSlice({
             return {...state, Appointments: [...action.payload]}
         },
         setAppointment: (state, action) => {
-            return {...state, Appointments: [action.payload]}
+            return {...state, Appointments: action.payload}
         },
         newAppointment: (state, action) => {
             return {...state, Appointments: [action.payload, ...state.Appointments]}
