@@ -41,7 +41,7 @@ export default () => {
                     <p className="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
                 </div>
                 <div className="col-md-3">
-                    <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style={{width: "320px", height: "290px"}} src={immunity} data-holder-rendered="true" />
+                    <img className="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style={{width: "320px", height: "290px"}} src={immunity} data-holder-rendered="true" />
                 </div>
                 
             </div>
@@ -49,7 +49,7 @@ export default () => {
             <div className="container d-flex flex-md-row flex-column-reverse  mt-3 mb-3">
                 
                 <div className="col-md-3">
-                    <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style={{width: "300px", height: "300px"}} src={spread} data-holder-rendered="true" />
+                    <img className="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style={{width: "300px", height: "300px"}} src={spread} data-holder-rendered="true" />
                 </div>
                 <div className="col-md-7 flex-fill align-self-center">
                     <h4 className="featurette-heading">Prevent Spread</h4>
@@ -64,7 +64,7 @@ export default () => {
                     <p className="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
                 </div>
                 <div className="col-md-3">
-                    <img class="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style={{width: "300px", height: "300px"}} src={healthcare} data-holder-rendered="true" />
+                    <img className="featurette-image img-fluid mx-auto" data-src="holder.js/500x500/auto" alt="500x500" style={{width: "300px", height: "300px"}} src={healthcare} data-holder-rendered="true" />
                 </div>
                 
             </div>

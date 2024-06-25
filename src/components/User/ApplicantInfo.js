@@ -27,22 +27,6 @@ export default () => {
         setTimeout(() => setCurrAppointments({Data: Appointments, isFetching: false}), 1000);
         setTimeout(() => setCurrApplicants({Data: Applicants, isFetching: false}), 1000);
         
-        // if(!currApplicants.isFetching && !currAppointments.isFetching && Applicants == 500)
-        //     {
-        //         setCurrApplicants((prev) => ({
-        //             ...prev,
-        //             isFetching: true
-        //         }))
-        //         setCurrAppointments((prev) => ({
-        //             ...prev,
-        //             isFetching: true
-        //         }))
-        //         navigate('/ErrorHandling', {
-        //             state: {
-        //                 Error: 500
-        //             }
-        //         })
-        //     }
     }, [Applicants, Appointments])
 
     const handleEdit = () => {
@@ -73,9 +57,9 @@ export default () => {
     
 
     return currApplicants.isFetching || currAppointments.isFetching
-       ? (<div class="d-flex flex-column align-items-center h-100 mt-5">
-            <div class="spinner-border" role="status">
-                <span class="sr-only"></span>
+       ? (<div className="d-flex flex-column align-items-center h-100 mt-5">
+            <div className="spinner-border" role="status">
+                <span className="sr-only"></span>
             </div>
         </div>)
        : (currApplicants.Data.map((x,i) => 
@@ -96,7 +80,7 @@ const ApplicantInfos = ({applis, appoints}) => {
     const data = [applis.ic, applis.name, applis.gender, applis.phoneNo, applis.email, applis.address, appoints.vaccCenter, appoints.vaccChoice];
 
     return (
-        <div className="px-5 justify-content-center align-items-center">
+        <div key={applis.ic} className="px-5 justify-content-center align-items-center">
             {labels.map((x, i) => (
                 <Row className="pb-3">
                     <Col className="text-center">{x}:</Col>
@@ -109,12 +93,15 @@ const ApplicantInfos = ({applis, appoints}) => {
 
 const AppointmentInfos = ({applis, appoints}) => {
     const lables = ["Dose", "Appointment Date", "Vaccination Status", "Cancellation"];
+    const navigate = useNavigate();
     const handleSubmit = async (event, doseNumber) => {
         event.preventDefault();
         const status = await DeleteAppointmentDate(appoints.appointment_id, doseNumber);
-  
         
-        console.log(status)
+        if(status.status == 200)
+            {
+                navigate(0);
+            }
     }
 
     return(
