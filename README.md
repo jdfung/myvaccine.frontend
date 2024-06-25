@@ -2,6 +2,9 @@
 
 Welcome to the MyVaccine Appointment Management System's user front-end repository. This project aims to provide a seamless experience for users to Register, book, and manage their vaccination appointments easily and efficiently. The system consists of an end-user site and an admin dashboard. This repository is dedicated to the end-user front-end implementation.
 
+![HomePage](https://github.com/jdfung/myvaccine.frontend/blob/main/Images/MyVaccineHomepage.png)
+![HomePage](https://github.com/jdfung/myvaccine.frontend/blob/main/Images/MyVaccineReservation.png)
+
 ## Project Structure
 
 This front-end project is built with the following technologies:
